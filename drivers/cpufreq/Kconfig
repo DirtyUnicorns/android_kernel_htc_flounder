@@ -122,6 +122,12 @@ config CPU_FREQ_DEFAULT_GOV_BIOSHOCK
 	select CPU_FREQ_GOV_BIOSHOCK
 	help
 	  Default governor of BioShock kernel
+	  
+config CPU_FREQ_DEFAULT_GOV_LIONHEART
+	bool "lionheart"
+	select CPU_FREQ_GOV_LIONHEART
+	help
+	Use the CPUFreq governor 'Lionheart' as default.
 
 endchoice
 
@@ -241,6 +247,12 @@ config CPU_FREQ_GOV_BIOSHOCK
 	depends on CPU_FREQ
 	help
 	  'bioshock' - More aggressive version of conservative
+	
+config CPU_FREQ_GOV_LIONHEART
+	tristate "'Lionheart' cpufreq governor"
+	depends on CPU_FREQ
+	help
+	  'Lionheart' - A brave and agile conservative-based governor.
 
 config GENERIC_CPUFREQ_CPU0
 	tristate "Generic CPU0 cpufreq driver"
