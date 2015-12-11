@@ -44,6 +44,9 @@
 #include <linux/delay.h>
 #include <linux/swap.h>
 #include <linux/fs.h>
+#ifdef CONFIG_TEGRA_NVMAP
+#include <linux/nvmap.h>
+#endif
 
 #ifdef CONFIG_HIGHMEM
 #define _ZONE ZONE_HIGHMEM
@@ -291,6 +294,10 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 						total_swapcache_pages();
 	else
 		other_file = 0;
+
+#ifdef CONFIG_TEGRA_NVMAP
+        other_free += nvmap_page_pool_get_unused_pages();
+#endif
 
 	si_swapinfo(&swap_info);
 	other_free += swap_info.freeswap;
