@@ -525,13 +525,7 @@ static int gk20a_init_error_notifier(struct channel_gk20a *ch,
 {
 	struct dma_buf *dmabuf;
 	void *va;
-	u64 end;
-
-	if (unlikely(args->offset >
-		     U64_MAX - sizeof(struct nvhost_notification)))
-		return -EINVAL;
-
-	end = args->offset + sizeof(struct nvhost_notification);
+	u64 end = args->offset + sizeof(struct nvhost_notification);
 
 	if (!args->mem) {
 		pr_err("gk20a_init_error_notifier: invalid memory handle\n");
