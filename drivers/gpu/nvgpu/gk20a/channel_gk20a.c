@@ -1734,6 +1734,7 @@ static int gk20a_channel_wait(struct channel_gk20a *ch,
 	case NVHOST_WAIT_TYPE_NOTIFIER:
 		id = args->condition.notifier.nvmap_handle;
 		offset = args->condition.notifier.offset;
+		end = offset + sizeof(struct notification);
 
 		if (unlikely(offset > U32_MAX - sizeof(struct notification)))
 			return -EINVAL;
