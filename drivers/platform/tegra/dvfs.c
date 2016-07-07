@@ -1254,7 +1254,6 @@ void __init tegra_init_dvfs_one(struct dvfs *d, int max_freq_index)
 	if (d->freqs[0] * d->freqs_mult >= c->max_rate)
 		return;
 
-	ret = enable_dvfs_on_clk(c, d);
 	if (ret)
 		pr_err("tegra_dvfs: failed to enable dvfs on %s\n", c->name);
 }
